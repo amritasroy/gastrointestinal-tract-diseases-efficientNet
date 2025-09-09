@@ -1,7 +1,7 @@
 # Endoscopy Image Classification — EfficientNetB0 + Channel Attention (SE)
 
 > Lightweight endoscopy image classifier using EfficientNetB0 + Squeeze-and-Excitation (SE) attention and regularization.  
-> Single-file release: **`efficientNetB0_attention_regularization(proposed_model).ipynb`** (Colab-friendly).
+> Single-file release: **`model.ipynb`** (Colab-friendly).
 
 ## 🔍 Overview
 
@@ -12,8 +12,6 @@ This project builds a **computationally efficient** CNN-based classifier for GI 
 - **Regularization** (L2 + Dropout) to reduce overfitting
 
 The notebook trains/evaluates on four classes: **normal**, **esophagitis**, **ulcerative colitis**, **polyps**.
-
-> This README distills the key ideas and results from the report and the provided notebook. Minor deviations (e.g., learning rate) reflect the exact code in this notebook for reproducibility.
 
 ---
 
