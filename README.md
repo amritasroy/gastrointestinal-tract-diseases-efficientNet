@@ -67,21 +67,19 @@ The final model integrates:
 - **Regularization**: L2=0.01, Dropout=0.5
 - **Epochs**: 20
 
-<<<<<<< HEAD
+
 ---
 
 ## 📈 Training Performance
-
-### Accuracy & Loss (general training)
-
-<img src="assets/General.png" alt="Accuracy and Loss" width="600"/>
 
 ### Overfitting Behavior
 
 <img src="assets/Overfit.png" alt="Overfitting Comparison" width="600"/>
 
-=======
->>>>>>> 055bad8853b3a46442f8f607059b24e0ccb11883
+### Accuracy & Loss (after introducing data augmentation and L2 regularization of rate 0.01)
+
+<img src="assets/General.png" alt="Accuracy and Loss" width="600"/>
+
 ---
 
 ## 📉 Evaluation Metrics
