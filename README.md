@@ -152,6 +152,9 @@ If you use this work, please cite the project/report accordingly.
 
 ## 🧾 License
 
+
+MIT --- see [LICENSE](./LICENSE)
+
 MIT License 
 
 ---
