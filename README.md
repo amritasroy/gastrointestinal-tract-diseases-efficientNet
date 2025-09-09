@@ -164,4 +164,4 @@ MIT --- see [LICENSE](./LICENSE)
 - EfficientNet (Tan & Le)
 - Squeeze-and-Excitation (Hu et al.)
 - WCE curated colon disease dataset (Kaggle)
-# gastrointestinal-tract-diseases-efficientNet
+
