@@ -1,102 +1,110 @@
-# Endoscopy Image Classification — EfficientNetB0 + Channel Attention (SE)
+# Endoscopy Image Classification — EfficientNet + Attention Models
 
-> Lightweight endoscopy image classifier using EfficientNetB0 + Squeeze-and-Excitation (SE) attention and regularization.  
-> Single-file release: **`model.ipynb`** (Colab-friendly).
-
-## 🔍 Overview
-
-This project builds a **computationally efficient** CNN-based classifier for GI endoscopy images. The final model integrates:
-
-- **EfficientNetB0** (ImageNet pre-trained) as the feature extractor
-- **Channel attention (SE block)** to reweight informative channels
-- **Regularization** (L2 + Dropout) to reduce overfitting
-
-The notebook trains/evaluates on four classes: **normal**, **esophagitis**, **ulcerative colitis**, **polyps**.
+> Deep learning experiments for endoscopy image classification.  
+> Final release: **`efficientNetB0_attention_regularization(proposed_model).ipynb`** (Colab-friendly).
 
 ---
 
-## 📦 Contents
+## 📂 Repository Contents
 
-- `efficientNetB0_attention_regularization(proposed_model).ipynb` — the full pipeline (data, model, training, metrics, plots).
-- `README.md` — you are here.
+This repository contains multiple Jupyter notebooks exploring baseline and advanced CNN architectures.
 
-Optional (recommended):
+| Notebook                                                        | Description                                                                                                                          |
+| --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `efficientNetB0_attention_regularization(proposed_model).ipynb` | ✅ **Final proposed model** — EfficientNetB0 + SE attention + regularization (L2, Dropout). Best performance (~93.7% test accuracy). |
+| `efficientNetB0.ipynb`                                          | Baseline EfficientNetB0 (ImageNet pretrained, no attention, minimal regularization).                                                 |
+| `efficientNetB0_with_attention.ipynb`                           | EfficientNetB0 + SE attention block (no additional regularization).                                                                  |
+| `efficientNetB2.ipynb`                                          | EfficientNetB2 backbone, deeper and more complex variant.                                                                            |
+| `efficientNetB2_with_CNN.ipynb`                                 | Hybrid model: EfficientNetB2 + extra CNN layers.                                                                                     |
+| `simple_cnn.ipynb`                                              | Simple CNN baseline for comparison.                                                                                                  |
 
-- `.gitignore` — ignore datasets, notebook checkpoints, etc.
-- `LICENSE` — choose one (e.g., MIT).
+---
+
+## 🔍 Overview
+
+This project builds a **computationally efficient** classifier for GI endoscopy images.  
+The final model integrates:
+
+- **EfficientNetB0** (ImageNet pre-trained) backbone
+- **Channel attention (SE block)** for reweighting informative channels
+- **Regularization** (L2 + Dropout) for generalization
 
 ---
 
 ## 🗂️ Dataset
 
-- **Name**: WCE curated colon disease dataset (Kaggle, 2021).
-- **Classes used here (4)**: `normal`, `esophagitis`, `ulcerative_colitis`, `polyps`
-- **Images**: 6,000 (≈1,500 per class), various resolutions
-- **Split (used in code)**: `train` ≈ 53%, `val` ≈ 33%, `test` ≈ 13%
+- **Source**: WCE curated colon disease dataset (Kaggle, 2021).
+- **Classes used**: `normal`, `esophagitis`, `ulcerative_colitis`, `polyps`
+- **Total images**: 6,000 (≈1,500 per class)
+- **Split**: `train` ≈ 53%, `val` ≈ 33%, `test` ≈ 13%
 - **Input size**: 224×224
 
-### Expected directory layout
+### Example Samples
 
-```
-dataset_root/
-├─ train/
-│  ├─ normal/ ...images
-│  ├─ esophagitis/ ...
-│  ├─ ulcerative_colitis/ ...
-│  └─ polyps/ ...
-├─ val/
-│  ├─ normal/ ...
-│  ├─ esophagitis/ ...
-│  ├─ ulcerative_colitis/ ...
-│  └─ polyps/ ...
-└─ test/
-   ├─ normal/ ...
-   ├─ esophagitis/ ...
-   ├─ ulcerative_colitis/ ...
-   └─ polyps/ ...
-```
-
-> If your data is elsewhere, update the notebook’s `flow_from_directory()` paths.
+<img src="assets/classes.png" alt="Dataset classes" width="500"/>
 
 ---
 
-## 🧠 Model (Proposed architecture)
+## 🧠 Model Architectures
 
-- **Backbone**: EfficientNetB0 (ImageNet weights)
-- **Attention**: Squeeze-and-Excitation (SE) block
-  - GAP → Dense(C/4, ReLU) → Dense(C, Sigmoid) → Reshape(1,1,C) → Multiply with feature map
-- **Head**: GAP → Dense(256, ReLU, L2=0.01) → Dropout(0.5) → Dense(num_classes, Softmax, L2=0.01)
+### EfficientNetB0 Backbone
 
-### Why SE?
+<img src="assets/EfficientNetB0_Architecture.png" alt="EfficientNetB0 Architecture" width="600"/>
 
-SE learns channel-wise importance, letting the network **focus on diagnostic cues** and suppress less relevant channels with almost no compute overhead.
+### Squeeze-and-Excitation Attention Module
+
+<img src="assets/SE_Architecture.jpeg" alt="SE Block" width="400"/>
 
 ---
 
-## ⚙️ Training Setup (as in the notebook)
+## ⚙️ Training Setup
 
-- **Framework**: TensorFlow / Keras (Colab-ready)
+- **Framework**: TensorFlow / Keras
 - **Image size**: 224×224, **batch**: 32
 - **Augmentation**: rotation, shifts, shear, zoom, horizontal flip, rescale=1/255
-- **Optimizer**: Adam, **learning rate**: `1e-5`
+- **Optimizer**: Adam (`1e-5` for proposed, some baselines `1e-4`)
 - **Loss**: categorical cross-entropy
-- **Regularization**: L2=0.01 (dense + output), Dropout=0.5
+- **Regularization**: L2=0.01, Dropout=0.5
 - **Epochs**: 20
-
-> The report mentions lr≈1e-4 in some sections; this notebook uses **1e-5** for stability. Results may vary slightly across runs.
 
 ---
 
-## 📊 Results (from the notebook & report)
+## 📈 Training Performance
 
-- **Test accuracy**: ≈ **93.7%** (EfficientNetB0 + SE + regularization)
-- Baselines observed:
-  - EfficientNetB0 (no attention): ~82%
-  - - SE (no regularization): ~85%
+### Accuracy & Loss (general training)
 
-**Precision–Recall** and **ROC** curves indicate stronger performance for **normal** and **esophagitis**; comparatively weaker on **ulcerative colitis** and **polyps** (scope for improvement).
+<img src="assets/General.png" alt="Accuracy and Loss" width="600"/>
 
-> See the notebook’s final section for classification report, weighted F1, ROC and PR curves.
+### Overfitting Behavior
+
+<img src="assets/Overfit.png" alt="Overfitting Comparison" width="600"/>
+
+---
+
+## 📉 Evaluation Metrics
+
+### Precision–Recall Curve
+
+<img src="assets/Recall.png" alt="Precision-Recall" width="600"/>
+
+### ROC Curve
+
+<img src="assets/ROC.png" alt="ROC Curve" width="600"/>
+
+---
+
+## 📊 Performance Summary
+
+| Model                                     | Attention | Regularization | Test Accuracy |
+| ----------------------------------------- | --------- | -------------- | ------------- |
+| Simple CNN                                | ❌        | Dropout        | ~70%          |
+| EfficientNetB0 baseline                   | ❌        | Minimal        | ~82%          |
+| EfficientNetB0 + SE                       | ✅        | ❌             | ~85%          |
+| EfficientNetB2                            | ❌        | Minimal        | ~84%          |
+| EfficientNetB2 + CNN layers               | ❌        | Basic dropout  | ~86%          |
+| **EfficientNetB0 + SE + Reg. (Proposed)** | ✅        | L2 + Dropout   | **~93.7%**    |
+
+<img src="assets/Comparison.png" alt="Model Comparison" width="600"/>
 
 ---
 
@@ -104,43 +112,33 @@ SE learns channel-wise importance, letting the network **focus on diagnostic cue
 
 ### Option A — Run on Google Colab
 
-1. Open the notebook in Colab.
-2. Mount your drive (first code cell does this).
-3. Place the dataset at the expected path (or update the `flow_from_directory()` paths).
-4. Run all cells end‑to‑end.
+1. Open any notebook in Colab.
+2. Mount your drive.
+3. Place dataset in the expected path (or update `flow_from_directory()`).
+4. Run all cells.
 
-**Colab badge (replace with your repo path after you push):**
+**Colab badge (replace `<your-repo>`):**
 
 ```
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/<your-username>/<your-repo>/blob/main/efficientNetB0_attention_regularization(proposed_model).ipynb)
 ```
 
-### Option B — Local (GPU recommended)
+### Option B — Local
 
 ```bash
 python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install "tensorflow==2.16.1" "keras" "scikit-learn" "matplotlib" "numpy"
-# Start Jupyter
 pip install notebook
 jupyter notebook
-# Open the .ipynb and update dataset paths
 ```
-
----
-
-## 🧪 Reproducibility Tips
-
-- Keep the same folder split and augmentations.
-- Use the same batch size and image size.
-- If results jitter, try running for 25–30 epochs or tune lr in {1e-5, 3e-5, 1e-4}.
 
 ---
 
 ## 📉 Known Limitations & Future Work
 
-- Limited dataset diversity may affect generalization to rare/flat polyps.
-- Consider **spatial attention** (in addition to channel attention) and/or a small **multi-view ensemble** for harder classes.
-- Real‑time, edge deployment would benefit from TensorFlow Lite export and post‑training quantization (int8).
+- Dataset lacks diversity for rare/flat polyps.
+- Future: add **spatial attention** + **ensembling**.
+- Deploy via TensorFlow Lite + quantization for edge devices.
 
 ---
 
@@ -148,13 +146,11 @@ jupyter notebook
 
 - Amrita Sinha Roy
 
-If you use this work, please cite the project/report accordingly.
-
 ---
 
 ## 🧾 License
 
-Choose a license (MIT/BSD/Apache-2.0).
+MIT License
 
 ---
 
