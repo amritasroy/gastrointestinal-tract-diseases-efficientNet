@@ -142,7 +142,7 @@ jupyter notebook
 
 ---
 
-## ✍️ Authors
+## ✍️ Author
 
 - Amrita Sinha Roy
 
@@ -152,7 +152,7 @@ If you use this work, please cite the project/report accordingly.
 
 ## 🧾 License
 
-Choose a license (MIT/BSD/Apache-2.0).
+MIT License 
 
 ---
 
