@@ -155,7 +155,6 @@ If you use this work, please cite the project/report accordingly.
 
 MIT --- see [LICENSE](./LICENSE)
 
-MIT License 
 
 ---
 
