@@ -13,8 +13,6 @@ This project builds a **computationally efficient** CNN-based classifier for GI 
 
 The notebook trains/evaluates on four classes: **normal**, **esophagitis**, **ulcerative colitis**, **polyps**.
 
-> This README distills the key ideas and results from the report and the provided notebook. Minor deviations (e.g., learning rate) reflect the exact code in this notebook for reproducibility.
-
 ---
 
 ## 📦 Contents
