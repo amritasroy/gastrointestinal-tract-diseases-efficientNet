@@ -116,7 +116,6 @@ accuracy of 93.75% was achieved
 | EfficientNetB2 + CNN layers               | ❌        | Basic dropout  | ~86%          |
 | **EfficientNetB0 + SE + Reg. (Proposed)** | ✅        | L2 + Dropout   | **~93.7%**    |
 
-<img src="assets/Comparison.png" alt="Model Comparison" width="600"/>
 
 ---
 
