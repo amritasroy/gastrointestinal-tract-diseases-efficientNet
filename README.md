@@ -49,11 +49,11 @@ The final model integrates:
 
 ### EfficientNetB0 Backbone
 
-<img src="assets/EfficientNetB0_Architecture.png" alt="EfficientNetB0 Architecture" width="600"/>
+<img src="assets/EfficientNetB0 Architecture.png" alt="EfficientNetB0 Architecture" width="600"/>
 
 ### Squeeze-and-Excitation Attention Module
 
-<img src="assets/SE_Architecture.jpeg" alt="SE Block" width="400"/>
+<img src="assets/SE Architecture.jpeg" alt="SE Block" width="400"/>
 
 ---
 
