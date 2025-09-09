@@ -148,7 +148,7 @@ jupyter notebook
 ## ✍️ Author
 
 - Amrita Sinha Roy
-
+If you use this work, please cite the project/report accordingly.
 ---
 
 ## 🧾 License
