@@ -1,7 +1,7 @@
 # Endoscopy Image Classification — EfficientNetB0 + Channel Attention (SE)
 
 > Lightweight endoscopy image classifier using EfficientNetB0 + Squeeze-and-Excitation (SE) attention and regularization.  
-> Single-file release: **`efficientNetB0_attention_regularization(proposed_model).ipynb`** (Colab-friendly).
+> Single-file release: **`model.ipynb`** (Colab-friendly).
 
 ## 🔍 Overview
 
