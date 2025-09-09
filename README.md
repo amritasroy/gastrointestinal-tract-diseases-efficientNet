@@ -67,6 +67,7 @@ The final model integrates:
 - **Regularization**: L2=0.01, Dropout=0.5
 - **Epochs**: 20
 
+<<<<<<< HEAD
 ---
 
 ## 📈 Training Performance
@@ -79,6 +80,8 @@ The final model integrates:
 
 <img src="assets/Overfit.png" alt="Overfitting Comparison" width="600"/>
 
+=======
+>>>>>>> 055bad8853b3a46442f8f607059b24e0ccb11883
 ---
 
 ## 📉 Evaluation Metrics
@@ -142,7 +145,7 @@ jupyter notebook
 
 ---
 
-## ✍️ Authors
+## ✍️ Author
 
 - Amrita Sinha Roy
 
@@ -150,7 +153,13 @@ jupyter notebook
 
 ## 🧾 License
 
+<<<<<<< HEAD
 MIT License
+=======
+
+MIT --- see [LICENSE](./LICENSE)
+
+>>>>>>> 055bad8853b3a46442f8f607059b24e0ccb11883
 
 ---
 
@@ -159,3 +168,4 @@ MIT License
 - EfficientNet (Tan & Le)
 - Squeeze-and-Excitation (Hu et al.)
 - WCE curated colon disease dataset (Kaggle)
+# gastrointestinal-tract-diseases-efficientNet
