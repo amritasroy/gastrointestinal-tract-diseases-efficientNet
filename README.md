@@ -83,8 +83,6 @@ SE learns channel-wise importance, letting the network **focus on diagnostic cue
 - **Regularization**: L2=0.01 (dense + output), Dropout=0.5
 - **Epochs**: 20
 
-> The report mentions lr≈1e-4 in some sections; this notebook uses **1e-5** for stability. Results may vary slightly across runs.
-
 ---
 
 ## 📊 Results (from the notebook & report)
