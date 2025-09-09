@@ -71,10 +71,21 @@ The final model integrates:
 ---
 
 ## 📈 Training Performance
-
-### Overfitting Behavior
+EfficientNetB0 when standalone used as the baseline model,
+gave an test accuracy of 82%. The use of attention block
+after it, further improved the test accuracy to 85%. It was
+observed that though the accuracy had increased and the
+validation data was converging towards the training data,
+the training data was highly over-fitted to the training data
+ 
+### Accuracy & Loss (Overfitted)
 
 <img src="assets/Overfit.png" alt="Overfitting Comparison" width="600"/>
+
+By introducing data augmentation and
+L2 regularization of rate 0.01 to reduce the overfitting to
+the training data, the model was generalized and the test
+accuracy of 93.75% was achieved 
 
 ### Accuracy & Loss (after introducing data augmentation and L2 regularization of rate 0.01)
 
