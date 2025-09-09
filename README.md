@@ -153,13 +153,9 @@ jupyter notebook
 
 ## 🧾 License
 
-<<<<<<< HEAD
-MIT License
-=======
 
 MIT --- see [LICENSE](./LICENSE)
 
->>>>>>> 055bad8853b3a46442f8f607059b24e0ccb11883
 
 ---
 
